@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre mim. About</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --black: #0a0a0a;
+            --deep: #111318;
+            --surface: #16191f;
+            --border: #1e2330;
+            --blue-dark: #0d2244;
+            --blue: #1a4bbd;
+            --blue-mid: #2563eb;
+            --blue-bright: #3b82f6;
+            --blue-glow: #60a5fa;
+            --blue-light: #93c5fd;
+            --white: #f0f4ff;
+            --white-dim: #c8d4f0;
+            --white-muted: #7a8aaa;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--black);
+            color: var(--white);
+            font-family: 'IBM Plex Sans', sans-serif;
+            font-weight: 300;
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* ── GRID BACKGROUND ── */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(26, 75, 189, 0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(26, 75, 189, 0.04) 1px, transparent 1px);
+            background-size: 40px 40px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* ── HEADER ── */
+        header {
+            position: relative;
+            background: linear-gradient(135deg, var(--black) 0%, var(--blue-dark) 60%, #091833 100%);
+            padding: 80px 40px 60px;
+            text-align: center;
+            border-bottom: 1px solid var(--blue);
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: -60px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(37, 99, 235, 0.25) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        header::after {
+            content: 'JEZ';
+            position: absolute;
+            bottom: -30px;
+            right: 20px;
+            font-family: 'Bebas Neue', cursive;
+            font-size: 160px;
+            color: rgba(26, 75, 189, 0.08);
+            letter-spacing: 10px;
+            pointer-events: none;
+            user-select: none;
+        }
+
+        header h1 {
+            font-family: 'Bebas Neue', cursive;
+            font-size: clamp(2.5rem, 7vw, 5.5rem);
+            font-weight: 400;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            color: var(--white);
+            text-shadow: 0 0 40px rgba(96, 165, 250, 0.4);
+            position: relative;
+        }
+
+        header h1 span {
+            color: var(--blue-bright);
+        }
+
+        /* ── NAV ── */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            padding: 0;
+        }
+
+        nav h2 {
+            display: none;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0;
+            align-items: stretch;
+            padding: 0;
+        }
+
+        /* Page links group (Login, Menu, Musse) */
+        nav ul li {
+            border-right: 1px solid var(--border);
+        }
+
+        nav ul li a {
+            display: inline-flex;
+            align-items: center;
+            padding: 16px 20px;
+            color: var(--blue-bright);
+            text-decoration: none;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: color 0.2s, background 0.2s;
+            background: rgba(26, 75, 189, 0.06);
+            position: relative;
+        }
+
+        nav ul li a::after {
+            content: '↗';
+            font-size: 0.6rem;
+            margin-left: 5px;
+            opacity: 0.7;
+        }
+
+        nav ul li a:hover {
+            color: var(--blue-glow);
+            background: rgba(37, 99, 235, 0.15);
+        }
+
+        /* Separator between page links and anchor links */
+        nav ul li:last-child {
+            border-right: none;
+            margin-right: 1px;
+        }
+
+        nav ul li:last-child::after {
+            content: '';
+            display: inline-block;
+            width: 2px;
+            height: 24px;
+            background: linear-gradient(180deg, transparent, var(--blue-mid), transparent);
+            margin-left: 8px;
+            vertical-align: middle;
+        }
+
+        /* Anchor ID links (inline <a> inside ul) */
+        nav ul > a {
+            display: inline-flex;
+            align-items: center;
+            padding: 16px 16px;
+            color: var(--white-muted);
+            text-decoration: none;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.68rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: color 0.2s, background 0.2s;
+            border-right: 1px solid var(--border);
+        }
+
+        nav ul > a:hover {
+            color: var(--blue-bright);
+            background: rgba(37, 99, 235, 0.08);
+        }
+
+        nav > p {
+            display: none;
+        }
+
+        /* ── MAIN ── */
+        main {
+            position: relative;
+            z-index: 1;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 60px 40px;
+        }
+
+        /* ── HR ── */
+        hr {
+            border: none;
+            border-top: 1px solid var(--border);
+            margin: 60px 0;
+            position: relative;
+        }
+
+        hr::after {
+            content: '';
+            position: absolute;
+            top: -1px;
+            left: 0;
+            width: 80px;
+            height: 2px;
+            background: var(--blue-mid);
+        }
+
+        /* ── SECTIONS ── */
+        section {
+            animation: fadeUp 0.6s ease both;
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(24px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ── HEADINGS ── */
+        h2 {
+            font-family: 'Bebas Neue', cursive;
+            font-size: clamp(2rem, 4vw, 3.2rem);
+            font-weight: 400;
+            letter-spacing: 4px;
+            color: var(--white);
+            margin-bottom: 30px;
+            position: relative;
+            display: inline-block;
+        }
+
+        h2::after {
+            content: '';
+            display: block;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--blue-mid), transparent);
+            margin-top: 6px;
+        }
+
+        h3 {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--blue-bright);
+            margin-bottom: 20px;
+            margin-top: 10px;
+        }
+
+        /* ── ABOUT SECTION ── */
+        #sobre {
+            margin-bottom: 24px;
+        }
+
+        section:first-of-type {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+
+        section:first-of-type h2 {
+            grid-column: 1 / -1;
+        }
+
+        section:first-of-type img {
+            border: 2px solid var(--blue);
+            box-shadow: 0 0 40px rgba(37, 99, 235, 0.3), inset 0 0 0 1px rgba(96, 165, 250, 0.1);
+            filter: grayscale(20%) contrast(1.05);
+            transition: filter 0.4s, box-shadow 0.4s;
+            display: block;
+        }
+
+        section:first-of-type img:hover {
+            filter: grayscale(0%) contrast(1.1);
+            box-shadow: 0 0 60px rgba(37, 99, 235, 0.5);
+        }
+
+        section:first-of-type p {
+            color: var(--white-dim);
+            font-size: 1.05rem;
+            line-height: 1.9;
+            background: rgba(22, 25, 31, 0.6);
+            border: 1px solid var(--border);
+            border-left: 3px solid var(--blue-mid);
+            padding: 28px 32px;
+            backdrop-filter: blur(10px);
+        }
+
+        /* ── LISTS ── */
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        article ul li,
+        section > ul > li {
+            padding: 12px 16px 12px 20px;
+            border-left: 2px solid var(--border);
+            margin-bottom: 6px;
+            color: var(--white-dim);
+            font-size: 0.97rem;
+            transition: border-color 0.2s, color 0.2s, background 0.2s;
+            position: relative;
+        }
+
+        article ul li::before,
+        section > ul > li::before {
+            content: '//';
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.7rem;
+            color: var(--blue-bright);
+            margin-right: 10px;
+            font-weight: 600;
+        }
+
+        article ul li:hover,
+        section > ul > li:hover {
+            border-left-color: var(--blue-bright);
+            color: var(--white);
+            background: rgba(37, 99, 235, 0.06);
+        }
+
+        /* ── MUSIC SECTION ── */
+        #musicas + ul > li,
+        article ul li:has(iframe) {
+            border: 1px solid var(--border);
+            border-left: 3px solid var(--blue);
+            background: var(--surface);
+            padding: 20px 20px 16px;
+            margin-bottom: 12px;
+            border-radius: 0 4px 4px 0;
+        }
+
+        article ul li:has(iframe)::before {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+        }
+
+        article ul li:has(iframe):hover {
+            border-left-color: var(--blue-glow);
+            background: rgba(22, 25, 31, 0.9);
+        }
+
+        iframe {
+            display: block;
+            margin-top: 12px;
+            border-radius: 4px;
+            border: none;
+            width: 100%;
+            height: 152px;
+        }
+
+        /* ── TEAM SECTION ── */
+        #time {
+            margin-bottom: 20px;
+        }
+
+        #time ~ p,
+        section p {
+            color: var(--white-dim);
+            line-height: 1.85;
+            max-width: 700px;
+        }
+
+        section a:has(img) {
+            display: block;
+            margin-top: 24px;
+            overflow: hidden;
+            border: 2px solid var(--blue);
+            box-shadow: 0 0 40px rgba(37, 99, 235, 0.2);
+            transition: box-shadow 0.3s;
+            max-width: 640px;
+        }
+
+        section a:has(img):hover {
+            box-shadow: 0 0 60px rgba(37, 99, 235, 0.5);
+        }
+
+        section a:has(img) img {
+            width: 100%;
+            height: auto;
+            max-width: 640px;
+            display: block;
+            filter: grayscale(30%) sepia(10%) hue-rotate(190deg);
+            transition: filter 0.4s;
+        }
+
+        section a:has(img):hover img {
+            filter: grayscale(0%) sepia(0%);
+        }
+
+        /* ── ESTUDOS SECTION ── */
+        #estudos ~ p,
+        section > p {
+            margin-top: 16px;
+            color: var(--white-dim);
+            background: rgba(13, 34, 68, 0.3);
+            border: 1px solid var(--border);
+            border-left: 3px solid var(--blue);
+            padding: 20px 24px;
+            font-style: italic;
+            line-height: 1.85;
+        }
+
+        /* ── FOOTER ── */
+        footer {
+            position: relative;
+            z-index: 1;
+            background: linear-gradient(180deg, var(--black) 0%, #050810 100%);
+            border-top: 1px solid var(--border);
+            padding: 60px 40px 40px;
+            max-width: 100%;
+        }
+
+        footer h2 {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 2.8rem;
+            letter-spacing: 6px;
+            color: var(--white);
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        footer ul {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 700px) {
+            footer ul { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        footer ul li {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            padding: 20px 24px;
+            text-align: center;
+            transition: border-color 0.2s, background 0.2s;
+        }
+
+        footer ul li:hover {
+            border-color: var(--blue-bright);
+            background: rgba(37, 99, 235, 0.08);
+        }
+
+        footer ul li {
+            color: var(--white-muted);
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.75rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        footer ul li a {
+            display: block;
+            margin-top: 6px;
+            color: var(--blue-bright);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+
+        footer ul li a:hover {
+            color: var(--blue-glow);
+        }
+
+        footer hr {
+            margin-top: 50px;
+            border-color: var(--border);
+        }
+
+        /* ── LINKS ── */
+        a {
+            color: var(--blue-bright);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        a:hover {
+            color: var(--blue-glow);
+        }
+
+        /* ── SCROLLBAR ── */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--black);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--blue);
+            border-radius: 3px;
+        }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 700px) {
+            main { padding: 40px 20px; }
+            header { padding: 50px 20px 40px; }
+            nav { padding: 0 10px; }
+            nav ul li a, nav ul > a { padding: 12px 12px; font-size: 0.65rem; }
+            section:first-of-type { grid-template-columns: 1fr; }
+            section:first-of-type img { width: 100%; height: auto; }
+            footer { padding: 40px 20px 30px; }
+        }
+
+        /* ── SECTION LABEL TAGS ── */
+        section::before {
+            content: attr(data-tag);
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.65rem;
+            letter-spacing: 3px;
+            color: var(--blue-mid);
+            text-transform: uppercase;
+            display: block;
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1> Dossiê Zanette </h1>
+    </header>
+
+    <nav>
+        <h2> Navegação</h2>
+        <ul>
+            <li><a href="../index.html" target="_blank">Login</a></li>
+            <li><a href="./home.html" target="_blank">Menu</a></li>
+            <li><a href="./mussedemaracuja.html" target="_blank">Musse de Maracujá</a></li>
+    <p> </p>
+            <a href="#sobre">Sobre</a>
+            <a href="#hobbies">Hobbies</a>
+            <a href="#musicas">Músicas</a>
+            <a href="#projetos">Projetos</a>
+            <a href="#jogosfavoritos">Jogos Favoritos</a>
+            <a href="#estudos">Estudos</a>
+            <a href="#time">Time</a>
+            <a href="#contato">Contato</a>
+        </ul>
+    </nav>
+
+    <main>
+
+       <section>
+            <h2 id="sobre">Sobre mim</h2>
+                <img src="../img/20260308_171038.jpg" alt="Eu" width="300" height="330">
+                    <p>Me chamo José Eduardo Zanette e moro em Itapuca, no Rio Grande do Sul.<br>
+                     Minha cidade tem cerca de 2000 habitantes (ou nem isso 😅), então praticamente todo mundo se conhece.<br>
+                        Sou aquele tipo de pessoa que curte tecnologia, jogos e sempre tá tentando aprender alguma coisa nova (às vezes dá certo, às vezes nem tanto kkk).<br>
+                        Tenho interesse em evoluir cada vez mais e correr atrás de oportunidades pra construir um futuro.<br>
+                        No tempo livre, gosto de jogar, assistir vídeos, dar risada com memes e ficar viajando em ideias aleatórias.<br>
+                        E claro… amo dar umas voltas de MT-03.
+    </p>
+        </section>
+
+        <hr>
+
+        <section>
+            <article>
+                <h2 id="hobbies">Hobbies</h2>
+                <ul>
+                    <li>Jogar videogames (principalmente jogos online)</li>
+                    <li>Assistir vídeos, lives e conteúdos de entretenimento</li>
+                    <li>Explorar à tecnologia</li>
+                    <li>Programar e mexer com código</li>
+                    <li>Viajar</li>
+                    <li>Customização de carros (já viu um GTR-R34?)</li>
+                    <li>Dar voltas de MT-03 (sim...é meu xodô)</li>
+                    <li>Ficar no Discord trocando ideia</li>
+                </ul>
+            </article>
+        </section>
+
+        <hr>
+
+        <section>
+            <article>
+                <h2 id="musicas">Músicas</h2>
+                <h3>Rock (o melhor gênero músical)</h3>
+                <ul>
+
+                    <li>Metallica - Enter Sandman
+                        <iframe src="https://open.spotify.com/embed/track/3DwQ7AH3xGD9h65ezslm6q" width="100%" height="152"></iframe>
+                    </li>
+
+                    <li>Nirvana - Smells Like Teen Spirit
+                        <iframe src="https://open.spotify.com/embed/track/4CeeEOM32jQcH3eN9Q2dGj" width="100%" height="152"></iframe>
+                    </li>
+
+                    <li>AC/DC - Highway to Hell
+                        <iframe src="https://open.spotify.com/embed/track/2zYzyRzz6pRmhPzyfMEC8s" width="100%" height="152"></iframe>
+                    </li>
+
+                    <li>Guns N' Roses - Sweet Child O' Mine
+                        <iframe src="https://open.spotify.com/embed/track/7snQQk1zcKl8gZ92AnueZW" width="100%" height="152"></iframe>
+                    </li>
+
+                    <li>Linkin Park - Numb
+                        <iframe src="https://open.spotify.com/embed/track/2nLtzopw4rPReszdYBJU6h" width="100%" height="152"></iframe>
+                    </li>
+
+                    <li>Red Hot Chili Peppers - Californication
+                        <iframe src="https://open.spotify.com/embed/track/48UPSzbZjgc449aqz8bxox" width="100%" height="152"></iframe>
+                    </li>
+
+                    <li>Foo Fighters - Everlong
+                        <iframe src="https://open.spotify.com/embed/track/5UWwZ5lm5PKu6eKsHAGxOk" width="100%" height="152"></iframe>
+                    </li>
+
+                    <li>Green Day - Boulevard of Broken Dreams
+                        <iframe src="https://open.spotify.com/embed/track/5GorCbAP4aL0EJ16frG2hd" width="100%" height="152"></iframe>
+                    </li>
+
+                    <li>The Beatles - Hey Jude
+                        <iframe src="https://open.spotify.com/embed/track/1eT2CjXwFXNx6oY5ydvzKU" width="100%" height="152"></iframe>
+                    </li>
+
+                    <li>The Rolling Stones - Paint It Black
+                        <iframe src="https://open.spotify.com/embed/track/63T7DJ1AFDD6Bn8VzG6JE8" width="100%" height="152"></iframe>
+                    </li>
+
+                    <li>Pink Floyd - Another Brick in the Wall
+                        <iframe src="https://open.spotify.com/embed/track/4gMgiXfqyzZLMhsksGmbQV" width="100%" height="152"></iframe>
+                    </li>
+
+                    <li>Led Zeppelin - Stairway to Heaven
+                        <iframe src="https://open.spotify.com/embed/track/5CQ30WqJwcep0pYcV4AMNc" width="100%" height="152"></iframe>
+                    </li>
+
+                    <li>Black Sabbath - Paranoid
+                        <iframe src="https://open.spotify.com/embed/track/2z71jdeVcC782NgsYZ6N8q" width="100%" height="152"></iframe>
+                    </li>
+
+                    <li>Iron Maiden - The Trooper
+                        <iframe src="https://open.spotify.com/embed/track/4OROzZUy6gOWN4UGQVaZMF" width="100%" height="152"></iframe>
+                    </li>
+
+                    <li>Slipknot - Duality
+                        <iframe src="https://open.spotify.com/embed/track/61mWefnWQOLf90gepjOCb3" width="100%" height="152"></iframe>
+                    </li>
+
+                    <li>System of a Down - Chop Suey!
+                        <iframe src="https://open.spotify.com/embed/track/2DlHlPMa4M17kufBvI2lEN" width="100%" height="152"></iframe>
+                    </li>
+
+                    <li>Avenged Sevenfold - Hail to the King
+                        <iframe src="https://open.spotify.com/embed/track/5anCkDvJ17aznvK5TED5uo" width="100%" height="152"></iframe>
+                    </li>
+
+                    <li>Arctic Monkeys - Do I Wanna Know?
+                        <iframe src="https://open.spotify.com/embed/track/5FVd6KXrgO9B3JPmC8OPst" width="100%" height="152"></iframe>
+                    </li>
+
+                    <li>The Killers - Mr. Brightside
+                        <iframe src="https://open.spotify.com/embed/track/003vvx7Niy0yvhvHt4a68B" width="100%" height="152"></iframe>
+                    </li>
+
+                    <li>Bon Jovi - Livin' on a Prayer
+                        <iframe src="https://open.spotify.com/embed/track/37ZJ0p5Jm13JPevGcx4SkF" width="100%" height="152"></iframe>
+                    </li>
+
+                    <li>U2 - With or Without You
+                        <iframe src="https://open.spotify.com/embed/track/6ADSaE87h8Y3lccZlBJdXH" width="100%" height="152"></iframe>
+                    </li>
+
+                    <li>Imagine Dragons - Radioactive
+                        <iframe src="https://open.spotify.com/embed/track/62yJjFtgkhUrXktIoSjgP2" width="100%" height="152"></iframe>
+                    </li>
+
+                    <li>Oasis - Wonderwall
+                        <iframe src="https://open.spotify.com/embed/track/5qqabIl2vWzo9ApSC317sa" width="100%" height="152"></iframe>
+                    </li>
+
+                    <li>Radiohead - Creep
+                        <iframe src="https://open.spotify.com/embed/track/70LcF31zb1H0PyJoS1Sx1r" width="100%" height="152"></iframe>
+                    </li>
+
+                </ul>
+            </article>
+        </section>
+
+        <hr>
+
+        <section>
+            <h2 id="projetos">Projetos & Interesses</h2>
+            <ul>
+                <li>Criar sistemas e sites</li>
+                <li>Desenvolvimento Pessoal</li>
+                <li>Aprender mais sobre programação</li>
+                <li>Explorar novas tecnologias</li>
+                <li>Crescer na área de tecnologia</li>
+            </ul>
+        </section>
+
+        <hr>
+
+        <section>
+            <h2 id="jogosfavoritos">Jogos Favoritos</h2>
+            <ul>
+                <li>Red Dead Redemption 2</li>
+                <li>Resident Evil 4 (REMAKE)</li>
+                <li>The Last Of Us: Part 1 e Part 2</li>
+                <li>Counter-Strike 2</li>
+                <li>GTA: San Andreas</li>
+            </ul>
+        </section>
+
+        <hr>
+
+        <section>
+            <h2 id="estudos">Estudos</h2>
+            <ul>
+                <li>Curso: Ciência da Computação </li>
+                <li>Instituição: Universidade de Passo Fundo </li>
+            </ul>
+            <p>
+            Mesmo cursando faculdade de Ciência da Computação, estudei muitos anos para Direito (SIM, ADVOGADO) <br>
+            Porém o coração falou mais alto e eu optei por estudar Ciência da Computação, pois desde meus 7 anos vivo à computadores e celulares. <br>
+            </p>
+        </section>
+
+        <hr>
+
+        <section>
+            <h2 id="time">Time</h2>
+            <p>Viva o Imortal Tricolor, o maior do Sul 💙🖤🤍 <br>
+            <br>
+            O Grêmio Foot-Ball Porto Alegrense não joga futebol… ele testa o coração do torcedor kkk. <br>
+            É sofrimento, é virada do nada, é aquele "agora vai" que vira história. <br>
+            Time que já levantou Copa Libertadores da América e continua mostrando que cair faz parte, o importante é levantar zoando os outros depois. <br>
+            <br>
+            Ser gremista é isso: sofrer hoje pra rir amanhã. <br>
+            Imortal não cai… só dá uma descansada 😏 (chora vermelho)<br></p>
+
+            <a href="https://gremio.net" onclick="tocarAudio(event)">
+                <img src="../img/gremio.jpg" alt="Imortal" width="1280" height="720">
+            </a>
+
+            <br>
+
+            <audio id="musica">
+                <source src="../docs/geral-do-gremio-gremio-gremio-eu-te-dou-a-vida-08094850-barrabrava-net.mp3">
+            </audio>
+        </section>
+
+        <hr>
+
+        <script>
+        function tocarAudio(event) {
+            event.preventDefault();
+            let audio = document.getElementById("musica");
+            audio.play();
+
+            setTimeout(() => {
+                window.location.href = "https://gremio.net";
+            }, 20000);
+        }
+        </script>
+
+    </main>
+
+    <footer>
+        <h2 id="contato">Contato</h2>
+        <ul>
+            <li>E-mail:<a href="https://mail.google.com/mail/?view=cm&fs=1&to=214246@upf.br&su=Contato%20pelo%20blog" target="_blank">
+             Enviar e-mail pelo Gmail
+            </a></li>
+            <li>Contato:<a href="https://wa.me/5551980293867" target="_blank">
+                (51) 98029-3867
+            </a></li>
+            
+            <li>Discord:<a href="https://discord.gg/nWZJPUPT"> Nossa Comunidade
+            </a></li>
+            <li>Instagram: <a href="https://instagram.com/zanette_jose" target="_blank">
+                zanette_jose</a></li>
+        </ul>
+        <hr>
+    </footer>
+
+</body>
+
+</html>
